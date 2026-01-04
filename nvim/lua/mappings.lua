@@ -31,9 +31,18 @@ map("n", "<D-s>", "<cmd>w<cr>", { desc = "Save file" })
 map("i", "<D-s>", "<Esc><cmd>w<cr>a", { desc = "Save file" })
 map("v", "<D-s>", "<Esc><cmd>w<cr>gv", { desc = "Save file" })
 
--- Close buffer
-map("n", "<leader>wc", "<cmd>bd<cr>", { desc = "Close buffer" })
-map("n", "<leader>x", "<cmd>bd<cr>", { desc = "Close buffer" })
+-- Close buffer (FIXED)
+map("n", "<leader>wc", function()
+  local win = vim.api.nvim_get_current_win()
+  vim.wo[win].winfixbuf = false
+  vim.cmd("bd")
+end, { desc = "Close buffer" })
+
+map("n", "<leader>x", function()
+  local win = vim.api.nvim_get_current_win()
+  vim.wo[win].winfixbuf = false
+  vim.cmd("bd")
+end, { desc = "Close buffer" })
 
 -- Copy file path
 map("n", "<leader>fy", "<cmd>let @+ = expand('%:p')<cr>", { desc = "Copy file path" })
@@ -177,8 +186,24 @@ end, { desc = "New vertical term" })
 -- GIT
 -- ==========================================
 
--- Open Lazygit
-map("n", "<leader>gg", "<cmd>terminal lazygit<cr>", { desc = "Open Lazygit" })
+-- Open Lazygit (FIXED)
+map("n", "<leader>gg", function()
+  local win = vim.api.nvim_get_current_win()
+  vim.wo[win].winfixbuf = false
+  
+  vim.cmd("terminal lazygit")
+  
+  -- Auto-close terminal when lazygit exits
+  vim.api.nvim_create_autocmd("TermClose", {
+    buffer = vim.api.nvim_get_current_buf(),
+    callback = function()
+      vim.schedule(function()
+        vim.cmd("bdelete!")
+      end)
+    end,
+    once = true,
+  })
+end, { desc = "Open Lazygit" })
 
 -- ==========================================
 -- TELESCOPE

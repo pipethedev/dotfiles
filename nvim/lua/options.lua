@@ -32,8 +32,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
   callback = function()
-    vim.cmd("startinsert")
+    -- Lock terminal windows to prevent files opening in them
+    if vim.bo.buftype == "terminal" then
+      vim.opt_local.winfixbuf = true
+      vim.cmd("startinsert")
+    end
   end,
 })
 
@@ -76,6 +81,23 @@ vim.opt.guicursor = {
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = "no"
+    vim.cmd("startinsert")
+  end,
+})
+
+-- Fix paste in terminal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.paste = true
+  end,
+})
 
 -- Update diagnostics faster
 vim.opt.updatetime = 250

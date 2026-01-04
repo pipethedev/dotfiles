@@ -34,5 +34,8 @@ keybind = shift+enter=text:\x1b\r
 cursor-style = block
 cursor-style-blink = false
 
-shell-integration = true
-shell-integration-features = cursor
+shell-integration = detect
+shell-integration-features = no-cursor,no-sudo
+
+clipboard-read = allow
+clipboard-write = allow
