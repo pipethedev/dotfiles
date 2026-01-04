@@ -214,3 +214,13 @@ map("n", "<leader>tt", function()
   vim.cmd("botright split | resize 15 | terminal")
 end, { desc = "Toggle terminal" })
 
+-- Undo/Redo
+map("n", "<C-z>", "u", { desc = "Undo" })
+map("i", "<C-z>", "<C-o>u", { desc = "Undo" })
+map("n", "<C-y>", "<C-r>", { desc = "Redo" })
+map("i", "<C-y>", "<C-o><C-r>", { desc = "Redo" })
+
+map("n", "<D-z>", "u", { desc = "Undo with Cmd" })
+map("i", "<D-z>", "<C-o>u", { desc = "Undo with Cmd" })
+map("n", "<D-S-z>", "<C-r>", { desc = "Redo with Cmd" })
+map("i", "<D-S-z>", "<C-o><C-r>", { desc = "Redo with Cmd" })
