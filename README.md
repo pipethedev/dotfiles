@@ -26,7 +26,7 @@ Development environment configuration files for Neovim, Ghostty terminal, and as
 ```bash
 # Clone the repository
 git clone https://github.com/pipethedev/dotfiles.git ~/dotfiles
-
+https://github.com/pipethedev/dotfiles
 # Run the installer
 cd ~/dotfiles
 chmod +x install.sh

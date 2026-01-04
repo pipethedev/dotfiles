@@ -3,7 +3,7 @@ font-family = JetBrainsMono Nerd Font
 font-size = 14
 
 # Theme - you can use 'catppuccin-mocha' or other built-in themes
-#theme = dark
+theme = Moonfly
 
 # Window configuration
 window-padding-x = 10
@@ -27,3 +27,4 @@ keybind = super+s=text:\x1b[27;5;115~
 keybind = super+b=text:\x1b[27;5;98~
 
 copy-on-select = false
+keybind = shift+enter=text:\x1b\r

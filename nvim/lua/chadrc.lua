@@ -6,13 +6,16 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = "ayu_dark",
+	transparency = true,
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
 	-- },
 }
+
+-- vim.cmd.colorscheme("moonfly")
 
 -- M.nvdash = { load_on_startup = true }
 -- M.ui = {

@@ -1,10 +1,17 @@
 return {
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  { "nyoom-engineering/oxocarbon.nvim", lazy = false, priority = 1000 },
+  { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim", lazy = false },
+  { "rktjmp/lush.nvim" },
+  { "artanikin/vim-synthwave84", lazy = false, priority = 1000 },
+  { "sheerun/vim-wombat-scheme", lazy = false, priority = 1000 },
+  { "samharju/synthweave.nvim", lazy = false, priority = 1000 },
+  { "maxmx03/fluoromachine.nvim", lazy = false, priority = 1000 },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
-
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
@@ -85,7 +92,17 @@ return {
   keys = {
     { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
   },
-}
+},
+{
+  "lukas-reineke/indent-blankline.nvim",
+  enabled = false,
+},
+{
+  "williamboman/mason.nvim",
+  opts = function()
+    return require "configs.mason"
+  end,
+},
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
