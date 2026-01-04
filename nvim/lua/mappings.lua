@@ -254,3 +254,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ timeout_ms = 2000 })
   end,
 })
+
+-- Copy relative file path
+map("n", "<leader>fr", "<cmd>let @+ = expand('%')<cr>", { desc = "Copy relative file path" })
+
+-- Copy filename only
+map("n", "<leader>fn", "<cmd>let @+ = expand('%:t')<cr>", { desc = "Copy filename" })
+
+-- Ctrl+Click to go to definition
+map("n", "<C-LeftMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Ctrl+Click go to definition" })
+
+-- Cmd+Click for Mac
+map("n", "<D-LeftMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Cmd+Click go to definition" })
+map("n", "<2-LeftMouse>", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Double-click go to definition" })

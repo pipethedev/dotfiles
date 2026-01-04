@@ -61,13 +61,58 @@ return {
   end,
 },
 {
+  "ray-x/lsp_signature.nvim",
+  event = "VeryLazy",
+  opts = {},
+  config = function(_, opts)
+    require('lsp_signature').setup(opts)
+  end
+},
+{
   "akinsho/toggleterm.nvim",
   config = function()
     require("toggleterm").setup({
-      size = 20,
-      open_mapping = [[<C-\>]],  -- Toggle with Ctrl+\
+      size = function(term)
+        if term.direction == "horizontal" then
+          return 15
+        elseif term.direction == "vertical" then
+          return vim.o.columns * 0.5
+        end
+      end,
+      open_mapping = [[<C-\>]],
       direction = "horizontal",
+      on_create = function()
+        vim.opt_local.scrolloff = 0
+      end,
     })
+    
+    local function get_term_wins()
+      local wins = {}
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        if vim.bo[buf].buftype == 'terminal' then
+          table.insert(wins, win)
+        end
+      end
+      return wins
+    end
+    
+    vim.keymap.set('n', '<leader>ts', function()
+      local term_wins = get_term_wins()
+      if #term_wins > 0 then
+        vim.api.nvim_set_current_win(term_wins[1])
+        vim.cmd('vsplit')
+        vim.cmd('term')
+        vim.cmd('startinsert')
+      else
+        vim.cmd('ToggleTerm direction=vertical')
+      end
+    end, { desc = "Split terminal side-by-side" })
+    
+    vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], { desc = "Move left" })
+    vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], { desc = "Move right" })
+    vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], { desc = "Move up" })
+    vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], { desc = "Move down" })
   end,
 },
 {

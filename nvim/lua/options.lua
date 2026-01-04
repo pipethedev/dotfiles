@@ -44,6 +44,38 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.cmd("stopinsert")
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.opt_local.winfixbuf = true
+    end
+  end,
+})
+
+vim.api.nvim_set_keymap('n', '<LeftRelease>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<LeftRelease>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<LeftRelease>', '<Nop>', { noremap = true, silent = true })
+
+
+vim.opt.guicursor = {
+  "n-v-c:block",
+  "i-ci-ve:ver25",
+  "r-cr:hor20",
+  "o:hor50",
+  "a:blinkwait700-blinkoff400-blinkon250",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
+}
+
 
 -- Update diagnostics faster
 vim.opt.updatetime = 250

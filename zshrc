@@ -134,3 +134,6 @@ export PATH="/Users/ileri/.antigravity/antigravity/bin:$PATH"
 
 
 
+export VISUAL=nvim
+export EDITOR=nvim
+export CLAUDE_EDITOR=nvim
