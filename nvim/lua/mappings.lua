@@ -50,6 +50,8 @@ map("n", "<C-S-p>", "<cmd>Telescope commands<cr>", { desc = "Command palette" })
 
 -- Find in files
 map("n", "<C-f>", "<cmd>Telescope live_grep<cr>", { desc = "Find in files" })
+map("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+map("i", "<C-p>", "<Esc><cmd>Telescope find_files<cr>", { desc = "Find files" })
 
 -- File explorer
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer" })
