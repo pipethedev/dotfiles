@@ -1,0 +1,20 @@
+# Font configuration
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+# Theme - you can use 'catppuccin-mocha' or other built-in themes
+#theme = dark
+
+# Window configuration
+window-padding-x = 10
+window-padding-y = 10
+background-opacity = 0.95
+
+# Shell
+command = /bin/zsh
+
+# Keybindings
+keybind = cmd+n=new_window
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+copy-on-select = false

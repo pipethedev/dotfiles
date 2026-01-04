@@ -1,0 +1,16 @@
+[user]
+	email = ileri.engineering@gmail.com
+	name = Muritala David Ilerioluwa
+[credential]
+	helper = 
+[credential "https://github.com/brimblehq/runner.git"]
+	helper = /var/folders/hw/k1mnzncd0gb09th9n1p6zy140000gn/T/task-agent-subcommands/task-agent-subcommands/checkout/1.0.2680-3a68af1/darwin/arm64/checkout credentials
+	useHttpPath = true
+[gc]
+	auto = 0
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
