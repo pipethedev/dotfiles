@@ -4,7 +4,7 @@ Development environment configuration files for Neovim, Ghostty terminal, and as
 
 ## Stack
 
-- **Terminal**: [Ghostty](https://ghostty.org/) with Hack Nerd Font
+- **Terminal**: [Ghostty](https://ghostty.org/) with JetBrainsMono Nerd Font
 - **Editor**: [Neovim](https://neovim.io/) 0.11+ with [NvChad](https://nvchad.com/)
 - **AI Assistant**: [Claude Code](https://docs.anthropic.com/en/docs/quickstarts/claude-code)
 - **Git UI**: [Lazygit](https://github.com/jesseduffield/lazygit)
