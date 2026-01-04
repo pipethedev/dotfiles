@@ -52,7 +52,7 @@ ln -sf ~/dotfiles/nvim ~/.config/nvim
 
 # Ghostty configuration
 mkdir -p ~/.config/ghostty
-ln -sf ~/dotfiles/ghostty-config ~/.config/ghostty/config
+ln ln-sf ~/dotfiles/ghostty-config ~/.config/ghostty/config
 
 # Shell configuration
 ln -sf ~/dotfiles/zshrc ~/.zshrc
