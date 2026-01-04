@@ -224,3 +224,33 @@ map("n", "<D-z>", "u", { desc = "Undo with Cmd" })
 map("i", "<D-z>", "<C-o>u", { desc = "Undo with Cmd" })
 map("n", "<D-S-z>", "<C-r>", { desc = "Redo with Cmd" })
 map("i", "<D-S-z>", "<C-o><C-r>", { desc = "Redo with Cmd" })
+
+
+-- Organize imports
+map("n", "<leader>oi", function()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "source.organizeImports" },
+      diagnostics = {}
+    },
+  })
+end, { desc = "Organize imports" })
+
+
+-- Auto-organize imports on save for specific file types
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.go", "*.ts", "*.tsx", "*.js", "*.jsx" },
+  callback = function()
+    -- Organize imports first
+    vim.lsp.buf.code_action({
+      apply = true,
+      context = {
+        only = { "source.organizeImports" },
+        diagnostics = {}
+      },
+    })
+    -- Then format
+    vim.lsp.buf.format({ timeout_ms = 2000 })
+  end,
+})
