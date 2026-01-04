@@ -187,29 +187,7 @@ Edit `~/.config/nvim/lua/mappings.lua`:
 map("n", "<your-key>", "<your-command>", { desc = "Description" })
 ```
 
-### Plugin Management
-
-Edit `~/.config/nvim/lua/plugins/init.lua`:
-```lua
-{
-  "author/plugin-name",
-  config = function()
-    require("plugin-name").setup()
-  end,
-}
 ```
-
-## System Requirements
-
-- macOS (tested on Apple Silicon M4 Pro)
-- Neovim 0.11 or later
-- Nerd Font for proper icon display
-- Git
-- Node.js (required for certain LSP servers)
-- Go 1.21+ (if working with Go projects)
-
-## Learning Curve
-
 ### Progressive Vim Motion Adoption
 
 Recommended learning path:
