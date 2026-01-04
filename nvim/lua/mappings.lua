@@ -206,3 +206,9 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up centered" })
 -- Centered search
 map("n", "n", "nzzzv", { desc = "Next result centered" })
 map("n", "N", "Nzzzv", { desc = "Prev result centered" })
+
+
+map("n", "<leader>tt", function()
+  vim.cmd("botright split | resize 15 | terminal")
+end, { desc = "Toggle terminal" })
+
