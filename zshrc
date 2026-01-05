@@ -137,3 +137,43 @@ export PATH="/Users/ileri/.antigravity/antigravity/bin:$PATH"
 export VISUAL=nvim
 export EDITOR=nvim
 export CLAUDE_EDITOR=nvim
+
+
+#This script automates the process of starting tmux and running claude code in my workspace
+cook() {
+    if [ -n "$TMUX" ]; then
+        return
+    fi
+
+    local session_name=$(basename "$PWD")
+
+    # Reuse existing session if it exists
+    if tmux has-session -t "$session_name" 2>/dev/null; then
+        tmux attach-session -t "$session_name"
+        return
+    fi
+
+    # Create new detached session
+    tmux new-session -d -s "$session_name"
+
+    # Start nvim in the main pane
+    tmux send-keys -t "$session_name:0.0" "nvim ." C-m
+
+    # Create bottom pane (~30% height)
+    tmux split-window -v -p 30 -t "$session_name"
+
+    # Split bottom pane horizontally
+    tmux split-window -h -t "$session_name:0.1"
+
+    # Run claude in the bottom-left pane (pane .1 after first split)
+    tmux send-keys -t "$session_name:0.1" "claude" C-m
+
+    # Optional small delay if claude needs time to start
+    # tmux send-keys -t "$session_name:0.1" "sleep 1; claude" C-m
+
+    # Return focus to the main Neovim pane
+    tmux select-pane -t "$session_name:0.0"
+
+    # Attach to the session
+    tmux attach-session -t "$session_name"
+}

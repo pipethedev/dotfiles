@@ -5,16 +5,6 @@ require "nvchad.options"
 -- local o = vim.o
 
 vim.opt.cursorlineopt ='both' -- to enable cursorline!
---
-vim.g.nvim_tree_auto_open = 1
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if vim.fn.argc() == 0 then
-      vim.cmd("NvimTreeToggle")
-    end
-  end,
-})
 
 -- Real-time LSP analytics (update as you type)
 vim.diagnostic.config({

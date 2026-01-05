@@ -160,29 +160,6 @@ map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
 
 -- ==========================================
--- TERMINAL
--- ==========================================
-
--- Toggle terminal
-map("n", "<leader>tt", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "Toggle terminal" })
-
-map("t", "<ESC>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "Toggle terminal" })
-
--- Horizontal terminal
-map("n", "<leader>th", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "New horizontal term" })
-
--- Vertical terminal
-map("n", "<leader>tv", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "New vertical term" })
-
--- ==========================================
 -- GIT
 -- ==========================================
 

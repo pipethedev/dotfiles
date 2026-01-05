@@ -24,4 +24,34 @@ M.base46 = {
 --      }
 -- }
 
+M.nvimtree = {
+  git = {
+    enable = true,
+    ignore = false,
+  },
+  filters = {
+    dotfiles = false,
+    git_ignored = false,
+    custom = {},
+  },
+  view = {
+    side = "left",
+  },
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+  },
+  diagnostics = {
+    enable = true,
+  },
+  actions = {
+    open_file = {
+      resize_window = true,
+    },
+  },
+  renderer = {
+    hidden_display = "all",
+  },
+}
+
 return M

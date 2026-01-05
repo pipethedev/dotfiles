@@ -28,8 +28,15 @@ keybind = super+p=text:\x1b[27;5;112~
 keybind = super+s=text:\x1b[27;5;115~
 keybind = super+b=text:\x1b[27;5;98~
 
-copy-on-select = false
 keybind = shift+enter=text:\x1b\r
+
+## settings
+
+auto-update-channel = stable
+copy-on-select = false
+initial-window = false
+window-padding-x = 5
+window-padding-balance = true
 
 cursor-style = block
 cursor-style-blink = false
