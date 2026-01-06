@@ -95,3 +95,25 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- Update diagnostics faster
 vim.opt.updatetime = 250
+
+-- Auto-reload files when changed externally (only if buffer is unmodified)
+vim.opt.autoread = true
+
+-- Check for external file changes when switching buffers or gaining focus
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    -- Only checktime if we're not in command mode and buffer is not modified
+    if vim.fn.mode() ~= "c" and not vim.bo.modified then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+-- Notification when file changes
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  pattern = "*",
+  callback = function()
+    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
+  end,
+})
