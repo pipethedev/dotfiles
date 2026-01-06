@@ -35,6 +35,7 @@
   "telescope.nvim": { "branch": "master", "commit": "3333a52ff548ba0a68af6d8da1e54f9cd96e9179" },
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "ui": { "branch": "v3.0", "commit": "ebf58649bc5c759ee6c730c87d8d2d4dd4124c0d" },
+  "vim-protobuf": { "branch": "master", "commit": "0d0f4e4b4087e0e608066aa2ba295e396d039931" },
   "vim-synthwave84": { "branch": "master", "commit": "a5caa80d9e1a7021f9ec6c06a96d09dfc2d99ed1" },
   "vim-wakatime": { "branch": "master", "commit": "d7973b157a632d1edeff01818f18d67e584eeaff" },
   "vim-wombat-scheme": { "branch": "master", "commit": "8bddabafb47dc84870cc20ffe887326883190997" },

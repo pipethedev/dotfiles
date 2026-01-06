@@ -6,6 +6,10 @@ require "nvchad.options"
 
 vim.opt.cursorlineopt ='both' -- to enable cursorline!
 
+-- Enable line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+
 -- Real-time LSP analytics (update as you type)
 vim.diagnostic.config({
   update_in_insert = true,  -- Show diagnostics while typing

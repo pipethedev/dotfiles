@@ -119,4 +119,8 @@ return {
       return conf
     end,
   },
+  {
+    "uarun/vim-protobuf",
+    ft = { "proto" },
+  },
 }
