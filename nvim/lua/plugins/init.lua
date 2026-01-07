@@ -1,12 +1,12 @@
 return {
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
-  { "nyoom-engineering/oxocarbon.nvim", lazy = false, priority = 1000 },
-  { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim", lazy = false },
+  { "bluz71/vim-moonfly-colors",        name = "moonfly",                  lazy = false,   priority = 1000 },
+  { "nyoom-engineering/oxocarbon.nvim", lazy = false,                      priority = 1000 },
+  { "mcchrish/zenbones.nvim",           dependencies = "rktjmp/lush.nvim", lazy = false },
   { "rktjmp/lush.nvim" },
-  { "artanikin/vim-synthwave84", lazy = false, priority = 1000 },
-  { "sheerun/vim-wombat-scheme", lazy = false, priority = 1000 },
-  { "samharju/synthweave.nvim", lazy = false, priority = 1000 },
-  { "maxmx03/fluoromachine.nvim", lazy = false, priority = 1000 },
+  { "artanikin/vim-synthwave84",        lazy = false,                      priority = 1000 },
+  { "sheerun/vim-wombat-scheme",        lazy = false,                      priority = 1000 },
+  { "samharju/synthweave.nvim",         lazy = false,                      priority = 1000 },
+  { "maxmx03/fluoromachine.nvim",       lazy = false,                      priority = 1000 },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
@@ -122,5 +122,42 @@ return {
   {
     "uarun/vim-protobuf",
     ft = { "proto" },
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "G", "Gvdiffsplit", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse" },
+    keys = {
+      { "<leader>gs", "<cmd>Git<cr>",         desc = "Git status" },
+      { "<leader>gd", "<cmd>Gvdiffsplit<cr>", desc = "Git diff" },
+      { "<leader>gb", "<cmd>Git blame<cr>",   desc = "Git blame" },
+      { "<leader>gl", "<cmd>Git log<cr>",     desc = "Git log" },
+      { "<leader>gp", "<cmd>Git push<cr>",    desc = "Git push" },
+    },
+  },
+  {
+    "andweeb/presence.nvim",
+    config = function()
+      require("presence").setup({
+        auto_update         = true,
+        neovim_image_text   = "The One True Text Editor",
+        main_image          = "neovim",
+        client_id           = "793271441293967371",
+        log_level           = nil,
+        debounce_timeout    = 10,
+        enable_line_number  = false,
+        blacklist           = {},
+        buttons             = true,
+        file_assets         = {},
+        show_time           = true,
+
+        editing_text        = "Editing %s",
+        file_explorer_text  = "Browsing %s",
+        git_commit_text     = "Committing changes",
+        plugin_manager_text = "Managing plugins",
+        reading_text        = "Reading %s",
+        workspace_text      = "Working on %s",
+        line_number_text    = "Line %s out of %s",
+      })
+    end,
   },
 }

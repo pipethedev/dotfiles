@@ -74,6 +74,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Disable terminal flow control (allows Ctrl+S in vim/nvim)
+stty -ixon
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
