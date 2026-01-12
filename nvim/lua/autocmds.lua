@@ -1,5 +1,14 @@
 require "nvchad.autocmds"
 
+-- Load custom LuaSnip snippets
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.defer_fn(function()
+      require("configs.luasnip")
+    end, 100)
+  end,
+})
+
 -- Auto-open nvim-tree on startup
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()

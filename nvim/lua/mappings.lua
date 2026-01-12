@@ -269,3 +269,4 @@ map("n", "<C-LeftMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<cr>", { 
 -- Cmd+Click for Mac
 map("n", "<D-LeftMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Cmd+Click go to definition" })
 map("n", "<2-LeftMouse>", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Double-click go to definition" })
+
