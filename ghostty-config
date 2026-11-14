@@ -18,15 +18,64 @@ command = /bin/zsh
 # Keybindings
 keybind = cmd+n=new_window
 keybind = cmd+t=new_tab
-keybind = cmd+w=close_surface
 keybind = ctrl+p=unbind
 
 macos-option-as-alt = true
-keybind = super+z=text:\x1b[27;5;122~
-keybind = super+shift+z=text:\x1b[27;6;122~
-keybind = super+p=text:\x1b[27;5;112~
-keybind = super+s=text:\x1b[27;5;115~
-keybind = super+b=text:\x1b[27;5;98~
+# VS Code style keys: Cmd+<key> is sent as Ctrl+Alt+<key>, which tmux forwards to Neovim only.
+# See nvim/lua/vscode_keys.lua for what each one does.
+keybind = super+s=text:\x1b[27;7;115~
+keybind = super+p=text:\x1b[27;7;112~
+keybind = super+b=text:\x1b[27;7;98~
+keybind = super+z=text:\x1b[27;7;122~
+keybind = super+a=text:\x1b[27;7;97~
+keybind = super+x=text:\x1b[27;7;120~
+keybind = super+f=text:\x1b[27;7;102~
+keybind = super+d=text:\x1b[27;7;100~
+keybind = super+w=text:\x1b[27;7;119~
+keybind = super+g=text:\x1b[27;7;103~
+keybind = super+l=text:\x1b[27;7;108~
+keybind = super+j=text:\x1b[27;7;106~
+keybind = super+c=text:\x1b[27;7;99~
+keybind = super+shift+c=copy_to_clipboard
+keybind = super+shift+p=text:\x1b[27;8;112~
+keybind = super+shift+f=text:\x1b[27;8;102~
+keybind = super+shift+z=text:\x1b[27;8;122~
+keybind = super+shift+k=text:\x1b[27;8;107~
+keybind = super+shift+e=text:\x1b[27;8;101~
+keybind = super+shift+o=text:\x1b[27;8;111~
+keybind = super+shift+m=text:\x1b[27;8;109~
+keybind = super+shift+h=text:\x1b[27;8;104~
+keybind = super+shift+g=text:\x1b[27;8;103~
+keybind = super+shift+v=text:\x1b[27;8;118~
+keybind = super+/=text:\x1b[27;7;47~
+keybind = super+.=text:\x1b[27;7;46~
+keybind = super+\=text:\x1b[27;7;92~
+keybind = super+enter=text:\x1b[27;7;13~
+keybind = super+shift+enter=text:\x1b[27;8;13~
+keybind = super+digit_1=text:\x1b[27;7;49~
+keybind = super+digit_2=text:\x1b[27;7;50~
+keybind = super+digit_3=text:\x1b[27;7;51~
+keybind = super+[=text:\x1b[27;7;57~
+keybind = super+]=text:\x1b[27;7;48~
+keybind = super+shift+[=text:\x1b[27;7;55~
+keybind = super+shift+]=text:\x1b[27;7;56~
+keybind = ctrl+`=text:\x1b[27;7;116~
+
+# Cmd+Arrows: line start/end and file start/end. With Shift they select.
+keybind = super+arrow_left=text:\x1b[H
+keybind = super+arrow_right=text:\x1b[F
+keybind = super+arrow_up=text:\x1b[1;5H
+keybind = super+arrow_down=text:\x1b[1;5F
+keybind = super+shift+arrow_left=text:\x1b[1;2H
+keybind = super+shift+arrow_right=text:\x1b[1;2F
+keybind = super+shift+arrow_up=text:\x1b[1;6H
+keybind = super+shift+arrow_down=text:\x1b[1;6F
+
+# Cmd+Alt+Arrows: move between tmux panes.
+keybind = super+alt+arrow_up=text:\x1b[1;7A
+keybind = super+alt+arrow_down=text:\x1b[1;7B
+keybind = super+alt+arrow_right=text:\x1b[1;7C
+keybind = super+alt+arrow_left=text:\x1b[1;7D
 
 keybind = shift+enter=text:\x1b\r
 
@@ -42,7 +91,7 @@ cursor-style = block
 cursor-style-blink = false
 
 shell-integration = detect
-shell-integration-features = no-cursor,no-sudo
+shell-integration-features = no-cursor,no-sudo,ssh-terminfo,ssh-env
 
 clipboard-read = allow
 clipboard-write = allow

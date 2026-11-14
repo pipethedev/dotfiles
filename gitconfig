@@ -14,3 +14,11 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://origin.cursor.com/git"]
+	helper = 
+	helper = !/Users/ileri/.local/bin/origin credential-helper
+[credential "https://origin.cursor.com"]
+	helper = 
+	helper = !/Users/ileri/.local/bin/origin credential-helper
+[includeIf "gitdir/i:~/Documents/pocket/"]
+	path = ~/.gitconfig-work

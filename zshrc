@@ -180,3 +180,9 @@ cook() {
     # Attach to the session
     tmux attach-session -t "$session_name"
 }
+
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Added by tensorlake installer
+export TENSORLAKE_INSTALL="/Users/ileri/.tensorlake"
+export PATH="$TENSORLAKE_INSTALL/bin:$PATH"
