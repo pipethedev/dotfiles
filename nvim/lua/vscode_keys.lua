@@ -75,13 +75,13 @@ map({ "n", "i", "x" }, cmd "7", previousBuffer, { desc = "Previous tab" })
 
 -- Sidebar and panels
 map({ "n", "i", "x" }, cmd "b", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle sidebar" })
-map({ "n", "i", "x" }, cmdShift "e", "<cmd>NvimTreeFocus<cr>", { desc = "Focus explorer" })
+map({ "n", "i", "x", "t" }, cmdShift "e", "<cmd>NvimTreeFocus<cr>", { desc = "Focus explorer" })
 map({ "n", "i", "x" }, cmdShift "m", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Problems" })
 map({ "n", "i", "x" }, cmd "\\", "<cmd>vsplit<cr>", { desc = "Split editor" })
 map({ "n", "i", "x" }, cmdShift "v", previewImage, { desc = "Open preview to the side" })
-map({ "n", "i", "x" }, cmd "1", focusWindow(1), { desc = "Focus first editor" })
-map({ "n", "i", "x" }, cmd "2", focusWindow(2), { desc = "Focus second editor" })
-map({ "n", "i", "x" }, cmd "3", focusWindow(3), { desc = "Focus third editor" })
+map({ "n", "i", "x", "t" }, cmd "1", focusWindow(1), { desc = "Focus first editor" })
+map({ "n", "i", "x", "t" }, cmd "2", focusWindow(2), { desc = "Focus second editor" })
+map({ "n", "i", "x", "t" }, cmd "3", focusWindow(3), { desc = "Focus third editor" })
 
 -- Search
 map({ "n", "i", "x" }, cmd "f", telescope "current_buffer_fuzzy_find", { desc = "Find in file" })
@@ -164,3 +164,11 @@ map({ "n", "i" }, "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 map({ "n", "i" }, "<F12>", vim.lsp.buf.definition, { desc = "Go to definition" })
 map({ "n", "i" }, "<S-F12>", vim.lsp.buf.references, { desc = "Find references" })
 map({ "n", "i", "x" }, cmd ".", vim.lsp.buf.code_action, { desc = "Quick fix" })
+
+-- Terminal panel at the bottom, like VS Code: Ctrl+` or Cmd+J shows and hides it.
+local function togglePanel()
+  require("nvchad.term").toggle { pos = "sp", id = "vscodePanel", size = 0.3 }
+end
+
+map({ "n", "i", "x", "t" }, cmd "t", togglePanel, { desc = "Toggle terminal" })
+map({ "n", "i", "x", "t" }, cmd "j", togglePanel, { desc = "Toggle terminal" })
