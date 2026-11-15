@@ -42,6 +42,14 @@ local function previewImage()
   require("snacks").image.placement.new(buffer, file, { conceal = true, auto_resize = true })
 end
 
+local function openPreview()
+  if vim.bo.filetype == "markdown" then
+    vim.cmd "RenderMarkdown preview"
+    return
+  end
+  previewImage()
+end
+
 local function closeBuffer()
   require("nvchad.tabufline").close_buffer()
 end
@@ -78,7 +86,7 @@ map({ "n", "i", "x" }, cmd "b", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle side
 map({ "n", "i", "x", "t" }, cmdShift "e", "<cmd>NvimTreeFocus<cr>", { desc = "Focus explorer" })
 map({ "n", "i", "x" }, cmdShift "m", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Problems" })
 map({ "n", "i", "x" }, cmd "\\", "<cmd>vsplit<cr>", { desc = "Split editor" })
-map({ "n", "i", "x" }, cmdShift "v", previewImage, { desc = "Open preview to the side" })
+map({ "n", "i", "x" }, cmdShift "v", openPreview, { desc = "Open preview to the side" })
 map({ "n", "i", "x", "t" }, cmd "1", focusWindow(1), { desc = "Focus first editor" })
 map({ "n", "i", "x", "t" }, cmd "2", focusWindow(2), { desc = "Focus second editor" })
 map({ "n", "i", "x", "t" }, cmd "3", focusWindow(3), { desc = "Focus third editor" })
@@ -99,9 +107,12 @@ map("i", cmd "z", "<cmd>undo<cr>", { desc = "Undo" })
 map({ "n", "i", "x" }, cmdShift "z", "<cmd>redo<cr>", { desc = "Redo" })
 
 -- Clipboard. Paste is Ghostty's own Cmd+V.
-map("x", cmd "c", '"+ygv', { desc = "Copy" })
-map("n", cmd "c", '"+yy', { desc = "Copy line" })
-map("i", cmd "c", '<cmd>normal! "+yy<cr>', { desc = "Copy line" })
+-- Cmd+C arrives as <D-c> from Ghostty and as Ctrl+Alt+C through tmux.
+for _, copyKey in ipairs { "<D-c>", cmd "c" } do
+  map("x", copyKey, '"+ygv', { desc = "Copy" })
+  map("n", copyKey, '"+yy', { desc = "Copy line" })
+  map("i", copyKey, '<cmd>normal! "+yy<cr>', { desc = "Copy line" })
+end
 map("x", cmd "x", '"+d', { desc = "Cut" })
 map("n", cmd "x", '"+dd', { desc = "Cut line" })
 map("i", cmd "x", '<cmd>normal! "+dd<cr>', { desc = "Cut line" })
@@ -172,3 +183,24 @@ end
 
 map({ "n", "i", "x", "t" }, cmd "t", togglePanel, { desc = "Toggle terminal" })
 map({ "n", "i", "x", "t" }, cmd "j", togglePanel, { desc = "Toggle terminal" })
+
+-- Claude Code in a side panel, like the VS Code extension: Cmd+Esc shows and hides it.
+-- Ghostty sends Cmd+Esc as Cmd+E because an Escape with modifiers does not survive the trip.
+map({ "n", "i", "t" }, cmd "e", "<cmd>ClaudeCodeFocus<cr>", { desc = "Toggle Claude Code" })
+map("x", cmd "e", "<cmd>ClaudeCodeSend<cr>", { desc = "Send selection to Claude Code" })
+
+-- Source control view, like VS Code: Ctrl+Shift+G lists the changed files with a side by side diff.
+-- Ghostty sends it as Cmd+Y.
+local function toggleSourceControl()
+  if require("diffview.lib").get_current_view() then
+    vim.cmd "DiffviewClose"
+    return
+  end
+  if not vim.fs.root(vim.fn.getcwd(), ".git") then
+    vim.notify("This folder is not a git repository, so there are no changes to show.", vim.log.levels.WARN)
+    return
+  end
+  vim.cmd "DiffviewOpen"
+end
+
+map({ "n", "i", "x" }, cmd "y", toggleSourceControl, { desc = "Toggle source control" })

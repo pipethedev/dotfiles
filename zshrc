@@ -186,3 +186,10 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 # Added by tensorlake installer
 export TENSORLAKE_INSTALL="/Users/ileri/.tensorlake"
 export PATH="$TENSORLAKE_INSTALL/bin:$PATH"
+
+# Ghostty sends Cmd+<key> as these sequences for Neovim (see ghostty-config); ignore them at the prompt.
+ignore-editor-key() { }
+zle -N ignore-editor-key
+for code in 13 {32..126}; do
+  bindkey "^[[27;7;${code}~" ignore-editor-key "^[[27;8;${code}~" ignore-editor-key
+done

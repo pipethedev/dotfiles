@@ -30,12 +30,13 @@ keybind = super+z=text:\x1b[27;7;122~
 keybind = super+a=text:\x1b[27;7;97~
 keybind = super+x=text:\x1b[27;7;120~
 keybind = super+f=text:\x1b[27;7;102~
-keybind = super+d=text:\x1b[27;7;100~
 keybind = super+w=text:\x1b[27;7;119~
 keybind = super+g=text:\x1b[27;7;103~
 keybind = super+l=text:\x1b[27;7;108~
 keybind = super+j=text:\x1b[27;7;106~
-keybind = super+c=text:\x1b[27;7;99~
+# Cmd+C copies Ghostty's own selection when there is one; otherwise the key
+# goes to the program, where Neovim sees it as <D-c> and copies its selection.
+keybind = performable:super+c=copy_to_clipboard
 keybind = super+shift+c=copy_to_clipboard
 keybind = super+shift+p=text:\x1b[27;8;112~
 keybind = super+shift+f=text:\x1b[27;8;102~
@@ -60,6 +61,8 @@ keybind = super+]=text:\x1b[27;7;48~
 keybind = super+shift+[=text:\x1b[27;7;55~
 keybind = super+shift+]=text:\x1b[27;7;56~
 keybind = ctrl+`=text:\x1b[27;7;116~
+keybind = super+escape=text:\x1b[27;7;101~
+keybind = ctrl+shift+g=text:\x1b[27;7;121~
 
 # Cmd+Arrows: line start/end and file start/end. With Shift they select.
 keybind = super+arrow_left=text:\x1b[H
